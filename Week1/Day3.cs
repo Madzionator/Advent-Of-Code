@@ -8,13 +8,9 @@ namespace Advent._2019.Week1
     {
         public static void Execute()
         {
-            List<int> report = new List<int>();
-            StreamReader file = new System.IO.StreamReader(@"Week1\input3.txt");
-            string[] map = file.ReadToEnd().Split("\r\n");
+            var map = File.ReadAllLines(@"Week1\input3.txt");
             int result_A = TreesCount(map, 1, 3);
             long result_B = Task_B(map);
-
-            file.Close();
             Console.WriteLine(result_A);
             Console.WriteLine(result_B);
         }

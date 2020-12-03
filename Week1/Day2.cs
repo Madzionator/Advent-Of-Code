@@ -8,14 +8,10 @@ namespace Advent._2019.Week1
     {
         public static void Execute()
         {
-            //task 1
-            List<int> report = new List<int>();
-            StreamReader file = new System.IO.StreamReader(@"Week1\input2.txt");
-            string[] all_line = file.ReadToEnd().Split("\r\n");
+            var all_line = File.ReadAllLines(@"Week1\input2.txt");
             int result_A = Task_A(all_line);
             int result_B = Task_B(all_line);
 
-            file.Close();
             Console.WriteLine(result_A);
             Console.WriteLine(result_B);
         }
