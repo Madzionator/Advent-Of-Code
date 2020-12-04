@@ -25,7 +25,9 @@ namespace Advent._2020.Week1
             }
             records.Add(record);
 
-            Console.WriteLine(Task(records));
+            var (A, B) = Task(records);
+            Console.WriteLine(A);
+            Console.WriteLine(B);
         }
 
         private static (int, int) Task(List<string>records)
@@ -62,31 +64,22 @@ namespace Advent._2020.Week1
                 switch(parameter)
                 {
                     case "byr:":
-                        Regex rgx = new Regex(@"^[0-9]{4}$");
-                        if (!rgx.IsMatch(value))
-                            return false;
                         if (int.Parse(value) < 1920 || int.Parse(value) > 2002)
                             return false;
                         break;
 
                     case "iyr:":
-                        rgx = new Regex(@"^[0-9]{4}$");
-                        if (!rgx.IsMatch(value))
-                            return false;
                         if (int.Parse(value) < 2010 || int.Parse(value) > 2020)
                             return false;
                         break;
 
                     case "eyr:":
-                        rgx = new Regex(@"^[0-9]{4}$");
-                        if (!rgx.IsMatch(value))
-                            return false;
                         if (int.Parse(value) < 2020 || int.Parse(value) > 2030)
                             return false;
                         break;
 
                     case "hgt:":
-                        rgx = new Regex(@"^[0-9]{3}cm$");
+                        Regex rgx = new Regex(@"^[0-9]{3}cm$");
                         if (rgx.IsMatch(value))
                         {
                            if (int.Parse(value.Substring(0, 3)) < 150 || int.Parse(value.Substring(0, 3)) > 193)
