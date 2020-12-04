@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Advent._2019.Week1
+namespace Advent._2020.Week1
 {
     public class Day3
     {

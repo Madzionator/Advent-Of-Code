@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Advent._2019.Week1
+namespace Advent._2020.Week1
 {
     public class Day2
     {
@@ -41,13 +41,7 @@ namespace Advent._2019.Week1
             {
                 string[] elements = line.Split(' ');    // position, condition, password
                 string[] positions = elements[0].Split('-');
-                int counter = 0;
-                if (elements[2][int.Parse(positions[0]) - 1] == elements[1][0])
-                    counter++;
-                if (elements[2][int.Parse(positions[1]) - 1] == elements[1][0])
-                    counter++;
-
-                if (counter == 1)
+                if ((elements[2][int.Parse(positions[0]) - 1] == elements[1][0]) != (elements[2][int.Parse(positions[1]) - 1] == elements[1][0]))
                     result++;
             }
             return result;
