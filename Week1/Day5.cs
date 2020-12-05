@@ -9,19 +9,15 @@ namespace Advent._2020.Week1
     {
         public static void Execute()
         {
+            List<int> results = new List<int>();
             var lines = File.ReadAllLines(@"Week1\input5.txt");
-            int result_A_max = 0;
-            List<int> list = new List<int>();
             foreach (var line in lines)
-            {
-                int result = Task_A(line);
-                list.Add(result);
-                if (result > result_A_max)
-                    result_A_max = result;
-            }
-            
-            int result_B = Task_B(list);
-            Console.WriteLine(result_A_max);
+                results.Add(Task_A(line));
+
+            int result_A = results.Max();
+            int result_B = Task_B(results);
+
+            Console.WriteLine(result_A);
             Console.WriteLine(result_B);
         }
 
@@ -33,10 +29,10 @@ namespace Advent._2020.Week1
 
         private static int Task_B(List<int>results)
         {
-            var ordered_results = results.OrderBy(x => x).ToList();
-            for(int i = ordered_results[1]; i<ordered_results.Count; i++)
-                if (ordered_results[i] - ordered_results[i - 1] > 1)
-                    return ordered_results[i] - 1;
+            var ordered = results.OrderBy(x => x).ToList();
+            for(int i = ordered[1]; i<ordered.Count; i++)
+                if (ordered[i] - ordered[i - 1] > 1)
+                    return ordered[i] - 1;
             return -1;
         }
     }
