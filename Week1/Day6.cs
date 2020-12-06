@@ -35,28 +35,21 @@ namespace Advent._2020.Week1
             Console.WriteLine(result_A);
             Console.WriteLine(result_B);
         }
-        private static (int, int) CountYes(string line)
+        private static (int, int) CountYes(string group_answers)
         {
             int[] answer = new int[26];
             int people = 0;
-            for (int i = 0; i<line.Length; i++)
+            for (int i = 0; i<group_answers.Length; i++)
             {
-                if (line[i] == ' ')
+                if (group_answers[i] == ' ')
                     people++;
                 else
-                    answer[line[i] - 'a']++;
+                    answer[group_answers[i] - 'a']++;
             }
 
-            int anyone = 0;
-            int everyone = 0;
-            for(int i = 0; i<26; i++)
-            {
-                if (answer[i] > 0)
-                    anyone++;
+            int anyone = answer.Count(x => x > 0);
+            int everyone = answer.Count(x => x == people);
 
-                if (answer[i] == people)
-                    everyone++;
-            }
             return (anyone, everyone);
         }
     }
