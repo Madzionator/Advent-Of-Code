@@ -77,17 +77,16 @@ namespace Advent._2020.Week1
         {
             string[] elements = line.Split(' ');
 
-            string colorName = (elements[0]+elements[1]+elements[2]).Replace(" ", "");
+            string colorName = (elements[0] + elements[1] + elements[2]);
             var contained_list = new List <(string, int)>();
             if (elements[3] != "no")
                 for(int i = 3; i<elements.Length; i+=4)
                 {
                     int quantity = int.Parse(elements[i]);
-                    string name = (elements[i + 1] + elements[i + 2] + elements[i + 3]).Replace(" ", "");
+                    string name = (elements[i + 1] + elements[i + 2] + elements[i + 3]);
                     contained_list.Add((name, quantity));
                 }
-            var new_object = new Color(colorName, contained_list.ToArray());
-            return new_object;
+            return new Color(colorName, contained_list.ToArray());
         }
     }
 }
