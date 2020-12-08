@@ -50,36 +50,27 @@ namespace Advent._2020.Week2
 
         private static int TaskB((string, int)[] commandArray)
         {
-            int accumulator = 0;
             for (int i = 0; i < commandArray.Length; i++)
-            {
-                if (commandArray[i].Item1 == "nop")
+                switch (commandArray[i].Item1)
                 {
-                    commandArray[i].Item1 = "jmp";
-                    var (result, finished) = Task(commandArray);
-                    if (finished)
-                    {
-                        accumulator = result;
-                        break;
-                    }
-                    else
-                        commandArray[i].Item1 = "nop";
-                }
-                else if (commandArray[i].Item1 == "jmp")
-                {
-                    commandArray[i].Item1 = "nop";
-                    var (res, finished) = Task(commandArray);
-                    if (finished)
-                    {
-                        accumulator = res;
-                        break;
-                    }
-                    else
+                    case "nop":
                         commandArray[i].Item1 = "jmp";
+                        var (result, finished) = Task(commandArray);
+                        if (finished)
+                            return result;
+                        else
+                            commandArray[i].Item1 = "nop";
+                        break;
+                    case "jmp":
+                        commandArray[i].Item1 = "nop";
+                        (result, finished) = Task(commandArray);
+                        if (finished)
+                            return result;
+                        else
+                            commandArray[i].Item1 = "jmp";
+                        break;
                 }
-            }
-
-            return accumulator;
+            return 0;
         }
     }
 }
