@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Advent._2020.Week2
 {
@@ -8,14 +9,13 @@ namespace Advent._2020.Week2
     {
         public static void Execute()
         {
-            var lines = File.ReadAllLines(@"Week2\input8.txt");
-            var commandList = new List<(string, int)>();
-            foreach (var line in lines)
-            {
-                var command = line.Split(' ');
-                commandList.Add((command[0], int.Parse(command[1])));
-            }
-            var commandArray = commandList.ToArray();
+            var commandArray = File.ReadAllLines(@"Week2\input8.txt")
+               .Select(lines =>
+               {
+                   var a = lines.Split(' ');
+                   return (a[0], int.Parse(a[1]));
+               })
+               .ToArray();
 
             int resultA = Task(commandArray).Item1;
             int resultB = TaskB(commandArray);
@@ -27,7 +27,7 @@ namespace Advent._2020.Week2
         private static (int, bool) Task((string, int)[] commandArray)
         {
             var array = new bool[commandArray.Length];
-            int result = 0;
+            int accumulator = 0;
             int i = 0;
 
             while (i < commandArray.Length && array[i] == false)
@@ -36,7 +36,7 @@ namespace Advent._2020.Week2
                 switch (commandArray[i].Item1)
                 {
                     case "acc":
-                        result += commandArray[i].Item2;
+                        accumulator += commandArray[i].Item2;
                         break;
                     case "jmp":
                         i += commandArray[i].Item2 - 1;
@@ -45,33 +45,33 @@ namespace Advent._2020.Week2
                 i++;
             }
 
-            return (result, (i >= commandArray.Length));
+            return (accumulator, (i >= commandArray.Length));
         }
 
         private static int TaskB((string, int)[] commandArray)
         {
-            int result = 0;
-            for(int i = 0; i<commandArray.Length; i++)
+            int accumulator = 0;
+            for (int i = 0; i < commandArray.Length; i++)
             {
-                if(commandArray[i].Item1 == "nop")
-                { 
+                if (commandArray[i].Item1 == "nop")
+                {
                     commandArray[i].Item1 = "jmp";
-                    var (res, finished) = Task(commandArray);
+                    var (result, finished) = Task(commandArray);
                     if (finished)
                     {
-                        result = res;
+                        accumulator = result;
                         break;
                     }
                     else
                         commandArray[i].Item1 = "nop";
                 }
-                else if(commandArray[i].Item1 == "jmp")
+                else if (commandArray[i].Item1 == "jmp")
                 {
                     commandArray[i].Item1 = "nop";
                     var (res, finished) = Task(commandArray);
                     if (finished)
                     {
-                        result = res;
+                        accumulator = res;
                         break;
                     }
                     else
@@ -79,7 +79,7 @@ namespace Advent._2020.Week2
                 }
             }
 
-            return result;
+            return accumulator;
         }
     }
 }
