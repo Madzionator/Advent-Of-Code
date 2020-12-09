@@ -9,7 +9,7 @@ namespace Advent._2020.Week2
     {
         public static void Execute()
         {
-            var commandArray = File.ReadAllLines(@"Week2\input8.txt")
+            var commands = File.ReadAllLines(@"Week2\input8.txt")
                .Select(lines =>
                {
                    var a = lines.Split(' ');
@@ -17,57 +17,56 @@ namespace Advent._2020.Week2
                })
                .ToArray();
 
-            int resultA = Task(commandArray).Item1;
-            int resultB = TaskB(commandArray);
+            int resultA = Task(commands).Item1;
+            int resultB = TaskB(commands);
 
             Console.WriteLine(resultA);
             Console.WriteLine(resultB);
         }
 
-        private static (int, bool) Task((string, int)[] commandArray)
+        private static (int, bool) Task((string cmd, int arg)[] commands)
         {
-            var array = new bool[commandArray.Length];
+            var used = new bool[commands.Length];
             int accumulator = 0;
             int i = 0;
 
-            while (i < commandArray.Length && array[i] == false)
+            while (i < commands.Length && !used[i])
             {
-                array[i] = true;
-                switch (commandArray[i].Item1)
+                used[i] = true;
+                switch (commands[i].cmd)
                 {
                     case "acc":
-                        accumulator += commandArray[i].Item2;
+                        accumulator += commands[i].arg;
                         break;
                     case "jmp":
-                        i += commandArray[i].Item2 - 1;
+                        i += commands[i].arg - 1;
                         break;
                 }
                 i++;
             }
 
-            return (accumulator, (i >= commandArray.Length));
+            return (accumulator, i >= commands.Length);
         }
 
-        private static int TaskB((string, int)[] commandArray)
+        private static int TaskB((string cmd, int arg)[] commands)
         {
-            for (int i = 0; i < commandArray.Length; i++)
-                switch (commandArray[i].Item1)
+            for (int i = 0; i < commands.Length; i++)
+                switch (commands[i].cmd)
                 {
                     case "nop":
-                        commandArray[i].Item1 = "jmp";
-                        var (result, finished) = Task(commandArray);
+                        commands[i].cmd = "jmp";
+                        var (accumulator, finished) = Task(commands);
                         if (finished)
-                            return result;
-                        else
-                            commandArray[i].Item1 = "nop";
+                            return accumulator;
+                        commands[i].cmd = "nop";
                         break;
+
                     case "jmp":
-                        commandArray[i].Item1 = "nop";
-                        (result, finished) = Task(commandArray);
+                        commands[i].cmd = "nop";
+                        (accumulator, finished) = Task(commands);
                         if (finished)
-                            return result;
-                        else
-                            commandArray[i].Item1 = "jmp";
+                            return accumulator;
+                        commands[i].cmd = "jmp";
                         break;
                 }
             return 0;
