@@ -35,11 +35,9 @@ namespace Advent._2020.Week2
                             break;
                         }
                     }
-
                     if (correct)
                         break;
                 }
-
                 if (!correct)
                     return (numbers[i], i);
             }
@@ -50,19 +48,13 @@ namespace Advent._2020.Week2
         {
             for (int i = 0; i < positionA; i++)
             {
-                long sum, min, max;
-                sum = min = max = numbers[i];
+                long sum = numbers[i];
 
-                for (int j = i+1; j < positionA; j++)
+                for (int j = i + 1; j < positionA; j++)
                 {
-                    if (numbers[j] > max)
-                        max = numbers[j];
-                    if (numbers[j] < min)
-                        min = numbers[j];
-
                     sum += numbers[j];
                     if (sum == ItemA)
-                        return (min+max);
+                        return numbers.GetRange(i, j - i + 1).Min() + numbers.GetRange(i, j - i + 1).Max();
                     if (sum > ItemA)
                         break;
                 }
