@@ -19,14 +19,14 @@ namespace Advent._2020.Week2
             Console.WriteLine(resultB);
         }
 
-        private static int TaskA((char dir, int val) [] coordsData)
+        private static int TaskA((char dir, int val)[] coordsData)
         {
-            (int dx, int dy)[] directions = { (1, 0), (0, -1), (-1, 0), (0, 1) }; 
+            (int dx, int dy)[] directions = { (1, 0), (0, -1), (-1, 0), (0, 1) };
             var (currentX, currentY) = (0, 0);
             var currentDirection = 0;
             foreach (var c in coordsData)
             {
-                switch(c.dir)
+                switch (c.dir)
                 {
                     case 'N':
                         currentY += c.val;
