@@ -41,14 +41,10 @@ namespace Advent._2020.Week2
                         currentX -= c.val;
                         break;
                     case 'R':
-                        int a = c.val / 90;
-                        a = (currentDirection + a) % 4;
-                        currentDirection = a;
+                        currentDirection = (currentDirection + c.val / 90) % 4;
                         break;
                     case 'L':
-                        a = c.val / 90;
-                        a = (currentDirection - a + 4) % 4;
-                        currentDirection = a;
+                        currentDirection = (currentDirection - c.val / 90 + 4) % 4;
                         break;
                     case 'F':
                         currentX += directions[currentDirection].dx * c.val;
@@ -82,20 +78,12 @@ namespace Advent._2020.Week2
                         PointDx -= c.val;
                         break;
                     case 'R':
-                        int a = c.val / 90;
-                        for (int k = 1; k <= a; k++)
-                        {
-                            (PointDx, PointDy) = (PointDy, PointDx);
-                            PointDy *= -1;
-                        }
+                        for (int k = 1; k <= c.val / 90; k++)
+                            (PointDx, PointDy) = (PointDy, -PointDx);
                         break;
                     case 'L':
-                        a = c.val / 90;
-                        for (int k = 1; k <= a; k++)
-                        {
-                            (PointDx, PointDy) = (PointDy, PointDx);
-                            PointDx *= -1;
-                        }
+                        for (int k = 1; k <= c.val / 90; k++)
+                            (PointDx, PointDy) = (-PointDy, PointDx);
                         break;
                     case 'F':
                         int moveX = PointDx * c.val;
