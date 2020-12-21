@@ -34,26 +34,26 @@ namespace Advent._2020.Week3
                     if (!ingredients.ContainsKey(ingr))
                         ingredients.Add(ingr, false);
 
-                foreach (var alerg in allergs) // create dictionary of allergens and their properties
+                foreach (var allerg in allergs) // create dictionary of allergens and their properties
                 {
-                    if(!allergens.ContainsKey(alerg))
+                    if (!allergens.ContainsKey(allerg))
                     {
                         var insideDict = new Dictionary<string, int>();
                         foreach (var ingr in ingrs)
                             insideDict.Add(ingr, 1);
-                        allergens.Add(alerg, (insideDict, 1));
+                        allergens.Add(allerg, (insideDict, 1));
                     }
                     else
                     {
                         foreach (var ingr in ingrs)
                         {
-                            if (allergens[alerg].Item1.ContainsKey(ingr))
-                                allergens[alerg].Item1[ingr]++;
+                            if (allergens[allerg].Item1.ContainsKey(ingr))
+                                allergens[allerg].Item1[ingr]++;
                             else
-                                allergens[alerg].Item1.Add(ingr, 1);
+                                allergens[allerg].Item1.Add(ingr, 1);
                         }
-                        var temp = allergens[alerg]; temp.Item2++;
-                        allergens[alerg] = temp;
+                        var temp = allergens[allerg]; temp.Item2++;
+                        allergens[allerg] = temp;
                     }
                 }
             }
@@ -106,10 +106,9 @@ namespace Advent._2020.Week3
                     if (possibilitiesCounter == 1)
                     {
                         solution.Add(allergen.Key, ingr);
-                        foreach (var allergDict in allergens)     // remove known ingredients and allergens
+                        foreach (var allergDict in allergens)     // remove known ingredients
                             if (ingredients[ingr])
                                 allergDict.Value.Item1.Remove(ingr);
-                        allergen.Value.Item1.Remove(allergen.Key);
                     }
                 }
                 if (solution.Count == allergens.Count)
