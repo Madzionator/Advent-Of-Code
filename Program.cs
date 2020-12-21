@@ -13,7 +13,7 @@ namespace Advent._2020
             var s = new Stopwatch();
             s.Start();
 
-            Day18.Execute();
+            Day21.Execute();
 
             s.Stop();
             Console.WriteLine($"\n\nTime Elapsed: {s.ElapsedMilliseconds}ms");
