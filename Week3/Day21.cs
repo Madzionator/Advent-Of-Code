@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Advent._2020.Week3
 {
@@ -42,19 +41,19 @@ namespace Advent._2020.Week3
                         foreach (var ingr in ingrs)
                             insideDict.Add(ingr, 1);
                         allergens.Add(allerg, (insideDict, 1));
+                        continue;
                     }
-                    else
+
+                    foreach (var ingr in ingrs)
                     {
-                        foreach (var ingr in ingrs)
-                        {
-                            if (allergens[allerg].Item1.ContainsKey(ingr))
-                                allergens[allerg].Item1[ingr]++;
-                            else
-                                allergens[allerg].Item1.Add(ingr, 1);
-                        }
-                        var temp = allergens[allerg]; temp.Item2++;
-                        allergens[allerg] = temp;
+                        if (allergens[allerg].Item1.ContainsKey(ingr))
+                            allergens[allerg].Item1[ingr]++;
+                        else
+                            allergens[allerg].Item1.Add(ingr, 1);
                     }
+                    var temp = allergens[allerg]; temp.Item2++;
+                    allergens[allerg] = temp;
+
                 }
             }
 
