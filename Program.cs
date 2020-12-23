@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Advent._2020.Week1;
 using Advent._2020.Week2;
 using Advent._2020.Week3;
+using Advent._2020.Week4;
 
 namespace Advent._2020
 {
@@ -13,7 +14,7 @@ namespace Advent._2020
             var s = new Stopwatch();
             s.Start();
 
-            Day21.Execute();
+            Day22.Execute();
 
             s.Stop();
             Console.WriteLine($"\n\nTime Elapsed: {s.ElapsedMilliseconds}ms");
