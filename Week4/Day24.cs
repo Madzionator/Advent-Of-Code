@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Advent._2020.Week3
+namespace Advent._2020.Week4
 {
     public class Day24
     {
@@ -28,8 +28,7 @@ namespace Advent._2020.Week3
             tiles.Add((0, 0), -1);
             foreach (var instruction in data)
             {
-                (int x, int y) start = (0, 0);
-                (int x, int y) tile = start;
+                (int x, int y) tile = (0, 0);
                 foreach (var move in instruction)
                 {
                     switch (move)
@@ -95,7 +94,7 @@ namespace Advent._2020.Week3
             int result = (tiles.Where(color => color.Value == 1).ToArray()).Length;
             return result;
 
-            void TryAdd((int x, int y) t, int color)
+            void TryAdd((int, int) t, int color)
             {
                 if (!newTiles.ContainsKey(t))
                     newTiles.Add(t, color);
