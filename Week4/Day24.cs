@@ -59,7 +59,7 @@ namespace Advent._2020.Week4
                     tiles[tile] *= -1;
             }
 
-            int result = (tiles.Where(color => color.Value == 1).ToArray()).Length;
+            int result = tiles.Where(color => color.Value == 1).Count();
             return (result, tiles);
         }
 
@@ -91,7 +91,7 @@ namespace Advent._2020.Week4
                 tiles = new Dictionary<(int, int), int>(newTiles);
             }
 
-            int result = (tiles.Where(color => color.Value == 1).ToArray()).Length;
+            int result = tiles.Where(color => color.Value == 1).Count();
             return result;
 
             void TryAdd((int, int) t, int color)
