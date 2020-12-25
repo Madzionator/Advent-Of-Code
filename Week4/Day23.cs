@@ -14,34 +14,26 @@ namespace Advent._2020.Week4
             foreach (var x in data)
                 cups.Add(int.Parse(x.ToString()));
 
-            string resultA = TaskA(cups.ToList());
+            long resultA = TaskA(cups.ToList());
             long resultB = TaskB(cups);
 
             Console.WriteLine(resultA);
             Console.WriteLine(resultB);
         }
 
-        private static string TaskA(List<int> cupsList)
+        private static long TaskA(List<int> cupsList)
         {
-            var partResult = Game(cupsList, 'A', 9, 100);
-            string result = "";
-            for (var i = partResult.IndexOf(1) + 1; i < 9; i++)
-                result += partResult[i].ToString();
-            for (var i = 0; i < partResult.IndexOf(1); i++)
-                result += partResult[i].ToString();
-
-            return result;
+            return Game(cupsList, 'A', 9, 100);
         }
 
         private static long TaskB(List<int>cupsList)
         {
             for (int i = 10; i <= 1_000_000; i++)
                 cupsList.Add(i);
-            var partResult = Game(cupsList, 'B', 1_000_000, 10_000_000);
-            return (long)partResult[0] * partResult[1];
+            return Game(cupsList, 'B', 1_000_000, 10_000_000);
         }
 
-        private static List<int> Game(List<int> cupsList, char task, int max, int moves)
+        private static long Game(List<int> cupsList, char task, int max, int moves)
         {
             var cups = new LinkedList<int>();
             var dict = new Dictionary<int, LinkedListNode<int>>();
@@ -81,14 +73,16 @@ namespace Advent._2020.Week4
 
             var idx = dict[1];
             if (task == 'A')
-                return cups.ToList();
+            {
+                string result = "";
+                for (var element = idx.Next(); element.Value > 1; element = element.Next())
+                    result += element.Value.ToString();
+                return long.Parse(result);
+            }
             else
             {
-                var res = new List<int>();
                 var nr1 = idx.Next();
-                res.Add(nr1.Value);
-                res.Add(nr1.Next.Value);
-                return res;
+                return (long)nr1.Value * nr1.Next().Value;
             }
         }
     }
