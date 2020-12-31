@@ -56,8 +56,8 @@ namespace Advent._2020.Week3
 
         private static int TaskB(Dictionary<string, string> rules, string[] words)
         {
-            rules["(8)"] = new string("((42)|((42)(42))|((42)(42)(42))|((42)(42)(42)(42))|((42)(42)(42)(42)(42)))");
-            rules["(11)"] = new string("(((42)(31))|((42)(42)(31)(31))|((42)(42)(42)(31)(31)(31))|((42)(42)(42)(42)(31)(31)(31)(31))|((42)(42)(42)(42)(42)(31)(31)(31)(31)(31)))");
+            rules["(8)"] = MakeNewRule(new[] { "(42)" }, 8);  // 5 is enough in my case
+            rules["(11)"] = MakeNewRule(new[] { "(42)", "(31)" }, 8); // 4
 
             var rgx = new Regex(MakeRegularExpression(rules));
             int result = 0;
@@ -67,7 +67,6 @@ namespace Advent._2020.Week3
 
             return result;
         }
-
 
         private static string MakeRegularExpression(Dictionary<string, string> rules)
         {
@@ -80,5 +79,29 @@ namespace Advent._2020.Week3
 
         }
 
+        private static string MakeNewRule(string[]newRuleElement, int N)
+        {
+            string newRule = "";
+            for (int n = 1; n <= N; n++)
+            {
+                string partOfRule = "";
+                foreach (var element in newRuleElement)
+                    partOfRule += repeat(n, element);
+
+                if (n == 1)
+                    newRule += partOfRule;
+                else
+                    newRule += (")|(" + partOfRule);
+            }
+            return "((" + newRule + "))";
+
+            string repeat(int n, string el)
+            {
+                string phrase = "";
+                for (int i = 1; i <= n; i++)
+                    phrase += el;
+                return phrase;
+            }
+        }
     }
 }
