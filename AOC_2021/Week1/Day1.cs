@@ -11,20 +11,34 @@ namespace Advent._2021.Week1
         public static void Execute()
         {
             var file = File.ReadAllLines(@"Week1\input1.txt");
-            var report = file.Select(int.Parse).ToList();
+            var measurements = file.Select(int.Parse).ToArray();
 
-            Console.WriteLine(Task_A(report));
-            Console.WriteLine(Task_B(report));
+            Console.WriteLine(Task_A(measurements));
+            Console.WriteLine(Task_B(measurements));
         }
 
-        public static int Task_A(List<int> report)
+        public static int Task_A(int [] measurements)
         {
-            return 0;
+            int increased = 0;
+            int measured = measurements.Count();
+
+            for(int i = 1; i < measured; i++ )
+                if ((measurements[i] - measurements[i - 1]) > 0)
+                    increased++;
+
+            return increased;
         }
 
-        public static int Task_B(List<int> report)
+        public static int Task_B(int[] measurements)
         {
-            return 0;
+            int increased = 0;
+            int measured = measurements.Count();
+
+            for (int i = 3; i < measured; i++)
+                if (measurements[i] - measurements[i - 3] > 0)
+                    increased++;
+
+            return increased;
         }
     }
 }
