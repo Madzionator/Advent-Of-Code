@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,61 +8,62 @@ namespace Advent._2021.Week1
     {
         public static void Execute()
         {
-           var commands = File.ReadAllLines(@"Week1\input2.txt")
-                .Select(x => 
-                {
-                    var values = x.Split(" ");
-                    return (values[0], int.Parse(values[1]));
-                })
-                .ToList();
+            var commands = File.ReadAllLines(@"Week1\input2.txt")
+                 .Select(x =>
+                 {
+                     var values = x.Split(" ");
+                     return (values[0], int.Parse(values[1]));
+                 })
+                 .ToArray();
 
-            Console.WriteLine(Task_A(commands));
-            Console.WriteLine(Task_B(commands));
+            Console.WriteLine(TaskA(commands));
+            Console.WriteLine(TaskB(commands));
         }
 
-        public static int Task_A(List<(string, int)> commands)
+        public static int TaskA((string, int)[] commands)
         {
-            int horizontalPosition = 0;
-            int depth = 0;
+            int horizontalPosition = 0, depth = 0;
 
-            foreach ((string direction, int value) command in commands)
+            foreach ((string direction, int value) in commands)
             {
-                switch (command.direction)
+                switch (direction)
                 {
                     case "forward":
-                        horizontalPosition += command.value;
+                        horizontalPosition += value;
                         break;
                     case "up":
-                        depth -= command.value;
+                        depth -= value;
                         break;
                     case "down":
-                        depth += command.value;
+                        depth += value;
                         break;
                 }
             }
+
             return horizontalPosition * depth;
         }
 
-        public static int Task_B(List<(string, int)> commands)
+        public static int TaskB((string, int)[] commands)
         {
             int horizontalPosition = 0, depth = 0, aim = 0;
 
-            foreach ((string direction, int value) command in commands)
+            foreach ((string direction, int value) in commands)
             {
-                switch (command.direction)
+                switch (direction)
                 {
                     case "forward":
-                        horizontalPosition += command.value;
-                        depth += aim * command.value;
+                        horizontalPosition += value;
+                        depth += aim * value;
                         break;
                     case "up":
-                        aim -= command.value;
+                        aim -= value;
                         break;
                     case "down":
-                        aim += command.value;
+                        aim += value;
                         break;
                 }
             }
+
             return horizontalPosition * depth;
         }
     }
