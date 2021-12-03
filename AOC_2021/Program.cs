@@ -11,7 +11,7 @@ namespace Advent._2021
             var s = new Stopwatch();
             s.Start();
 
-            Day2.Execute();
+            Day3.Execute();
 
             s.Stop();
             Console.WriteLine($"\n\nTime Elapsed: {s.ElapsedMilliseconds}ms");
