@@ -16,18 +16,12 @@ namespace Advent._2021.Week1
 
         public static long Task(int[] lanternFishTime, int days)
         {
-            long[] times = new long[9];
+            var times = new long[9];
             foreach (var internalTime in lanternFishTime)
                 times[internalTime]++;
 
-            for (int day = 1; day <= days; day++)
-            {
-                long temp = times[0];
-                for (int i = 1; i <= 8; i++)
-                    times[i - 1] = times[i];
-                times[6] += temp;
-                times[8] = temp;
-            }
+            for (int day = 0; day < days; day++)
+                times[(day + 7) % 9] += times[day % 9];
 
             return times.Sum();
         }
