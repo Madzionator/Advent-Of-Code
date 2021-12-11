@@ -3,7 +3,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Advent._2021</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdventHelpers\AdventHelpers.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="Week*\*.txt">

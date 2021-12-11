@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Advent.Helpers.Extensions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,12 +10,7 @@ namespace Advent._2021.Week2
     {
         public static void Execute()
         {
-            var lines = File.ReadAllLines(@"Week2\input11.txt");
-            var cavern = new int[10, 10];
-            for (var i = 0; i < 10; i++)
-                for (var j = 0; j < 10; j++)
-                    cavern[i, j] = lines[i][j] - '0';
-
+            var cavern = File.ReadAllLines(@"Week2\input11.txt").ToMatrix();
             var (ansA, ansB) = Task(cavern);
 
             Console.WriteLine(ansA);
@@ -31,9 +27,7 @@ namespace Advent._2021.Week2
                 if (cavern.Cast<int>().Count(c => c == 0) == 100)
                     return (flashes, step - 1);
 
-                for (var i = 0; i < 10; i++)
-                    for (var j = 0; j < 10; j++)
-                        cavern[i, j]++;
+                cavern.OnEachInMatrix(x => ++x);
 
                 while (true)
                 {
