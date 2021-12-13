@@ -8,12 +8,12 @@ namespace Advent._2021.Week2
 {
     class Day13
     {
-        private static HashSet<(int, int)> dots;
+        private static HashSet<(int x, int y)> dots;
         private static List<(char, int)> folds;
 
         public static void Execute()
         {
-            dots = new HashSet<(int, int)>();
+            dots = new HashSet<(int x, int y)>();
             folds = new List<(char, int)>();
             var file = File.ReadAllLines(@"Week2\input13.txt");
 
@@ -35,34 +35,32 @@ namespace Advent._2021.Week2
             TaskB();
         }
 
-        public static int TaskA() => Fold(0, 1);
+        public static int TaskA() => Fold(folds.Take(1).ToList());
         public static void TaskB()
         {
-            Fold(1, folds.Count);
+            Fold(folds.Skip(1).ToList());
             dots.DrawMap();
         }
 
-        public static int Fold(int startIdx, int stopIdx)
+        public static int Fold(List<(char, int)> folds)
         {
-            for (var i = startIdx; i < stopIdx; i++)
+            foreach (var (dir, val) in folds)
             {
-                if (folds[i].Item1 == 'x')
+                if (dir == 'x')
                 {
-                    var val = folds[i].Item2;
-                    var toAdd = (from dot in dots where dot.Item1 > val let newX = 2 * val - dot.Item1 select (newX, dot.Item2)).ToList();
-                    foreach (var t in toAdd.Where(t => !dots.Contains(t)))
-                        dots.Add(t);
+                    var toAdd = (from dot in dots where dot.x > val select (2 * val - dot.x, dot.y)).ToList();
+                    foreach (var item in toAdd.Where(t => !dots.Contains(t)))
+                        dots.Add(item);
 
-                    dots.RemoveWhere(x => x.Item1 >= val);
+                    dots.RemoveWhere(dot => dot.x >= val);
                 }
                 else
                 {
-                    var val = folds[i].Item2;
-                    var toAdd = (from dot in dots where dot.Item2 > val let newY = 2 * val - dot.Item2 select (dot.Item1, newY)).ToList();
-                    foreach (var t in toAdd.Where(t => !dots.Contains(t)))
-                        dots.Add(t);
+                    var toAdd = (from dot in dots where dot.y > val select (dot.x, 2 * val - dot.y)).ToList();
+                    foreach (var item in toAdd.Where(t => !dots.Contains(t)))
+                        dots.Add(item);
 
-                    dots.RemoveWhere(y => y.Item2 >= val);
+                    dots.RemoveWhere(dot => dot.y >= val);
                 }
             }
 
