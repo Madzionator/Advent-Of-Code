@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Advent.Helpers.Extensions;
 
 namespace Advent._2021.Week2
 {
@@ -11,50 +12,41 @@ namespace Advent._2021.Week2
         {
             var file = File.ReadAllLines(@"Week2\input14.txt");
             var firstTemplate = file[0];
-            var productionRules = new Dictionary<string, char>();
-            for (int i = 2; i < file.Length; i++)
-            {
-                var line = file[i].Split(" -> ");
-                productionRules[line[0]] = line[1][0];
-            }
+
+            var productionRules = file[2..]
+                .Select(x => x.Split(" -> "))
+                .ToDictionary(x => x[0], x => x[1][0]);
 
             Console.WriteLine(Task(productionRules, firstTemplate, 10));
             Console.WriteLine(Task(productionRules, firstTemplate, 40));
         }
 
-        public static long Task(Dictionary<string, char> productionRules, string firstTemplate, int steps)
+        public static long Task(Dictionary<string, char> productionRules, string template, int steps)
         {
             var elements = new Dictionary<char, long>();
-            foreach (var c in firstTemplate)
-                elements[c] = elements.ContainsKey(c) ? ++elements[c] : 1;
+            foreach (var c in template)
+                elements.AddOrSet(c, 1);
 
             var created = new Dictionary<string, long>();
-            for (int i = 1; i < firstTemplate.Length; i++)
-                if (created.ContainsKey(firstTemplate[(i - 1)..(i + 1)]))
-                    created[firstTemplate[(i - 1)..(i + 1)]]++;
-                else
-                    created[firstTemplate[(i - 1)..(i + 1)]] = 1;
+            for (var i = 1; i < template.Length; i++)
+                created.AddOrSet(template[(i - 1)..(i + 1)], 1);
 
-            for (int i = 0; i < steps; i++)
+            for (var i = 0; i < steps; i++)
             {
                 var copy = new Dictionary<string, long>(created);
-                foreach (var (k, v) in copy)
-                {
-                    var produced = productionRules[k];
-                    var new1 = "" + k[0] + produced;
-                    var new2 = "" + produced + k[1];
-                    created[k] -= v;
 
-                    created[new1] = created.ContainsKey(new1) ? created[new1] + v : v;
-                    created[new2] = created.ContainsKey(new2) ? created[new2] + v : v;
-                    elements[produced] = elements.ContainsKey(produced) ? elements[produced] + v : v;
+                foreach (var (key, val) in copy)
+                {
+                    var produced = productionRules[key];
+                    created[key] -= val;
+
+                    created.AddOrSet("" + key[0] + produced, val);
+                    created.AddOrSet("" + produced + key[1], val);
+                    elements.AddOrSet(produced, val);
                 }
             }
 
-            var min = elements.Min(x => x.Value);
-            var max = elements.Max(x => x.Value);
-
-            return max - min;
+            return elements.Max(x => x.Value) - elements.Min(x => x.Value);
         }
     }
 }
