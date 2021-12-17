@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Advent._2021.Week3
@@ -12,11 +13,11 @@ namespace Advent._2021.Week3
         public static void Execute()
         {
             var input = File.ReadAllText(@"Week3\input17.txt");
-            Regex regex = new Regex(@"target area: x=(.*)\.\.(.*), y=(.*)\.\.(.*)");
-            var values = regex.Match(input).Groups;
+            var regex = new Regex(@"target area: x=(.*)\.\.(.*), y=(.*)\.\.(.*)");
+            var intputVal = regex.Match(input).Groups.Cast<Group>().Skip(1).Select(x => int.Parse(x.Value)).ToArray();
 
-            X = (int.Parse(values[1].Value), int.Parse(values[2].Value));
-            Y = (int.Parse(values[3].Value), int.Parse(values[4].Value));
+            X = (intputVal[0], intputVal[1]);
+            Y = (intputVal[2], intputVal[3]);
 
             var (answA, answB) = Task();
             Console.WriteLine(answA);
@@ -25,26 +26,29 @@ namespace Advent._2021.Week3
 
         public static (int, int) Task()
         {
-            int highest = -1000;
-            int counter = 0;
+            var highest = Y.min;
+            var counter = 0;
 
-            for (int x = 0; x <= X.max; x++)
-                for (int y = 1000; y >= -1000; y--)
+            for (var vx = 0; vx <= X.max; vx++)
+                for (var vy = 1500; vy >= -1500; vy--)
                 {
-                    var (isReached, hight) = IsReached(x, y);
-                    if (isReached && (hight > highest))
-                        highest = hight;
+                    var (isReached, height) = IsReached(vx, vy);
+
+                    if (isReached && height > highest)
+                        highest = height;
 
                     if (isReached)
                         counter++;
                 }
-                             
-                return (highest, counter);
+            
+            return (highest, counter);
         }
 
         public static (bool, int) IsReached(int vx, int vy)
         {
-            int localH = -10000;
+            bool IsInArea(int x, int y) => X.min <= x && x <= X.max && Y.min <= y && y <= Y.max;
+
+            var localMaxH = Y.min;
             var (px, py) = (0, 0);
 
             while (py >= Y.min && px <= X.max)
@@ -52,11 +56,11 @@ namespace Advent._2021.Week3
                 px += vx;
                 py += vy;
 
-                if (py > localH)
-                    localH = py;
+                if (py > localMaxH)
+                    localMaxH = py;
 
                 if (IsInArea(px, py))
-                    return (true, localH);
+                    return (true, localMaxH);
 
                 if (vx == 0 && !(X.min <= px && px <= X.max))
                     break;
@@ -65,18 +69,7 @@ namespace Advent._2021.Week3
                 vy--;
             }
 
-            return (false, -1000);
-
-            bool IsInArea(int x, int y)
-            {
-                if (X.min > x || x > X.max)
-                    return false;
-
-                if (Y.min > y || y > Y.max)
-                    return false;
-
-                return true;
-            }
+            return (false, Y.min);
         }
     }
 }
