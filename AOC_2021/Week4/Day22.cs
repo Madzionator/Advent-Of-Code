@@ -9,65 +9,57 @@ namespace Advent._2021.Week4
     {
         public static void Execute()
         {
-            var points = new List<Cube>();
+            var rebootSteps = new List<Cube>();
             var file = File.ReadAllLines(@"Week4\input22.txt");
             foreach (var line in file)
             {
-                var val = line.Replace(",y", "").Replace(",z", "").Replace("..", "=").Split("=");
-                var vals = val[1..].Select(int.Parse).ToArray();
-                points.Add(new Cube(vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], val[0][1] == 'n'));
+                var lineVal = line.Replace(",y", "").Replace(",z", "").Replace("..", "=").Split("=");
+                var values = lineVal[1..].Select(int.Parse).ToArray();
+                rebootSteps.Add(new Cube(values[0], values[1], values[2], values[3], values[4], values[5], lineVal[0][1] == 'n'));
             }
 
-            Console.WriteLine(TaskA(points));
-            Console.WriteLine(TaskB(points));
+            Console.WriteLine(TaskA(rebootSteps));
+            Console.WriteLine(TaskB(rebootSteps));
         }
 
-        public static int TaskA(List<Cube> points)
+        public static int TaskA(List<Cube> steps)
         {
-            var dict = new Dictionary<(int x, int y, int z), bool>();
-            foreach (var p in points)
+            var cuboit = new Dictionary<(int x, int y, int z), bool>();
+            foreach (var s in steps)
             {
-                if (p.minX > 50 || p.minY > 50 || p.minZ > 50)
-                    continue;
-                if (p.maxX < -50 || p.maxY < -50 || p.maxZ < -50)
+                if (s.minX > 50 || s.minY > 50 || s.minZ > 50 || s.maxX < -50 || s.maxY < -50 || s.maxZ < -50)
                     continue;
 
-                if (p.on)
-                    Turn(true);
-                else
-                    Turn(false);
+                Turn(s.on);
 
                 void Turn(bool on)
                 {
-                    for (int ix = p.minX; ix <= p.maxX; ix++)
-                        for (int iy = p.minY; iy <= p.maxY; iy++)
-                            for (int iz = p.minZ; iz <= p.maxZ; iz++)
-                            {
-                                if (Math.Abs(ix) > 50 || Math.Abs(iy) > 50 || Math.Abs(iz) > 50)
-                                    continue;
-
-                                dict[(ix, iy, iz)] = on;
-                            }
+                    for (var ix = s.minX; ix <= s.maxX; ix++)
+                    for (var iy = s.minY; iy <= s.maxY; iy++)
+                    for (var iz = s.minZ; iz <= s.maxZ; iz++)
+                        if (Math.Abs(ix) <= 50 && Math.Abs(iy) <= 50 && Math.Abs(iz) <= 50) 
+                            cuboit[(ix, iy, iz)] = on;
                 }
             }
 
-            return dict.Count(x => x.Value == true);
+            return cuboit.Count(x => x.Value == true);
         }
 
-        public static long TaskB(List<Cube> points)
+        public static long TaskB(List<Cube> cuboits)
         {
             List<Cube> cubes = new();
-            foreach (var point in points)
+            foreach (var cuboit in cuboits)
             {
                 cubes.AddRange(
-                    cubes.Where(point.IsIntersect)
+                    cubes.Where(cuboit.IsIntersect)
                         .ToList()
-                        .Select(inter => point.Intersection(inter, !inter.on)));
+                        .Select(inter => cuboit.Intersection(inter, !inter.on)));
 
-                if (point.on) cubes.Add(point);
+                if (cuboit.on)
+                    cubes.Add(cuboit);
             }
 
-            return cubes.Sum(x=> x.V * (x.on ? 1L : -1L));
+            return cubes.Sum(x => x.V * (x.on ? 1L : -1L));
         }
 
         public record Cube(int minX, int maxX, int minY, int maxY, int minZ, int maxZ, bool on)
