@@ -2,10 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <ApplicationIcon />
-    <StartupObject />
-    <RootNamespace>Advent.Helpers</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+	  <RootNamespace>Advent.Helpers</RootNamespace>
   </PropertyGroup>
 
 </Project>
