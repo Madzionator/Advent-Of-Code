@@ -1,5 +1,5 @@
-﻿using Advent._2022.Week1;
-using Advent._2022.Day;
+﻿using Advent._2022.Day;
+using Advent._2022.Week1;
 using System.Diagnostics;
 using System.Reflection;
 
