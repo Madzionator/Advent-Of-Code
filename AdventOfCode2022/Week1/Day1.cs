@@ -1,56 +1,24 @@
 ﻿namespace Advent._2022.Week1;
-using Advent._2022.Day;
+using Day;
 
 class Day1 : IDay
 {
     public void Execute()
     {
-        var calories = File.ReadAllLines(@"Week1\input1.txt");
+        var calories = File.ReadAllText(@"Week1\input1.txt")
+            .Split($"{Environment.NewLine}{Environment.NewLine}", StringSplitOptions.RemoveEmptyEntries)
+            .Select(x => x
+                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .Sum())
+            .OrderByDescending(z => z)
+            .ToList();
 
         Console.WriteLine(TaskA(calories));
         Console.WriteLine(TaskB(calories));
     }
 
-    public int TaskA(string[] calories)
-    {
-        int largestSum = 0;
+    public int TaskA(List<int> calories) => calories.First();
 
-        int sum = 0;
-        foreach(string cal in calories)
-        {
-            if (string.IsNullOrEmpty(cal))
-            {
-                if (sum > largestSum)
-                    largestSum = sum;
-                sum = 0;
-            }
-            else
-                sum += int.Parse(cal);
-        }
-
-        return largestSum;
-    }
-
-    public int TaskB(string[] calories)
-    {
-        var allSums = new List<int>();
-
-        int sum = 0;
-        foreach(string cal in calories)
-        {
-            if (string.IsNullOrEmpty(cal))
-            {
-                allSums.Add(sum);
-                sum = 0;
-            }
-            else
-                sum += int.Parse(cal);
-        }
-
-        return allSums
-            .OrderByDescending(x => x)
-            .ToList()
-            .Take(3)
-            .Sum();
-    }
+    public int TaskB(List<int> calories) => calories.Take(3).Sum();
 }
