@@ -4,6 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Advent._2022</RootNamespace>
 	</PropertyGroup>
 
 
