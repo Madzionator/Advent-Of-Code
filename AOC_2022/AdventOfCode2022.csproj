@@ -7,6 +7,10 @@
 		<RootNamespace>Advent._2022</RootNamespace>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\AdventHelpers\AdventHelpers.csproj" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<None Update="Week*\*.txt">
