@@ -1,4 +1,5 @@
-﻿using Advent._2022.Day;
+﻿using System.Collections;
+using Advent._2022.Day;
 
 namespace Advent._2022.Week1;
 
@@ -15,13 +16,22 @@ class Day5 : IDay
             .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries))
             .Select(x => (int.Parse(x[1]), int.Parse(x[3]) - 1, int.Parse(x[5]) - 1));
 
-        var stacks = new string[(input[0][0].Length+1)/4];
-        for (var i = input[0].Length - 2; i >= 0; i--)
-        for (var j = 1; j < input[0][0].Length; j += 4)
-                stacks[(j - 1) / 4] += input[0][i][j] == ' ' ? "" : input[0][i][j];
+        var stacks = Enumerable.Range(0, (input[0][0].Count() + 1) / 4) //for each stack
+            .Select(i => new string(ExtractCrates(i, input[0][..^1])) //build stack
+                .Trim()); // remove "empty" crates
 
         Console.WriteLine(TaskA(stacks.ToArray(), procedure));
-        Console.WriteLine(TaskB(stacks, procedure));
+        Console.WriteLine(TaskB(stacks.ToArray(), procedure));
+    }
+
+    private static char[] ExtractCrates(int i, string[] input)
+    {
+        return input
+            .Reverse()
+            .Select(x => x
+                .Where((_, j) => (j - 1) % 4 == 0)) // columns with letters
+            .Select(y => y.ElementAt(i))
+            .ToArray();
     }
 
     private string TaskA(string[] stacks, IEnumerable<(int, int, int)> procedure)
