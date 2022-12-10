@@ -6,50 +6,44 @@ class Day10 : IDay
 {
     public void Execute()
     {
-        var input = File.ReadAllLines(@"Week2\input10.txt")
-            .Select(x => x.Split(' '))
-            .Select(x => x[0] == "noop" ? (1, 0) : (2, int.Parse(x[1])))
-            .ToList();
+        var instructions = new Queue<int>(
+            File.ReadLines(@"Week2\input10.txt")
+                .SelectMany(ParseLine));
 
-        Console.WriteLine(Task(input));
+        Console.WriteLine(Task(instructions));
     }
 
-    private int Task(List<(int Cl, int Val)> input)
+    IEnumerable<int> ParseLine(string line)
     {
-        int X = 1;
-        var instr = (-1, 0, 0); //instr nr, step, toAdd
-        int result = 0;
+        yield return 0;
+        if (line[0] == 'a')
+            yield return int.Parse(line[5..]);
+    }
 
-        for (var clock = 1;; clock++)
+    private int Task(Queue<int> instructions)
+    {
+        var X = 1;
+        var result = 0;
+
+        for (var cycle = 1; instructions.Count > 0; cycle++)
         {
-            if (instr.Item2 == 0)
-            {
-                instr.Item1++;
-                if (instr.Item1 >= input.Count)
-                    break;
+            if ((cycle - 20) % 40 == 0)
+                result += cycle * X;
 
-                instr.Item2 = input[instr.Item1].Cl;
-                instr.Item3 = input[instr.Item1].Val;
-            }
+            Draw(cycle%40);
 
-            if(clock%40-2 <= X && X <= clock%40)
-                Console.Write('#');
-            else
-                Console.Write(' ');
-
-            if (clock%40 == 0)
-                Console.Write(Environment.NewLine);
-
-            if ((clock - 20) % 40 == 0)
-                result += clock * X;
-
-            if (instr.Item2 == 1)
-                X += instr.Item3;
-
-            instr.Item2--;
+            X += instructions.Dequeue();
         }
 
-        Console.Write(Environment.NewLine);
+        Console.WriteLine();
         return result;
+
+        void Draw(int spriteEnd)
+        {
+            Console.Write(spriteEnd - 2 <= X && X <= spriteEnd ? '#' : ' ');
+
+            if (spriteEnd == 0)
+                Console.WriteLine();
+        }
     }
 }
