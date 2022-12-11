@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Advent.Helpers.Extensions
 {
@@ -10,6 +12,15 @@ namespace Advent.Helpers.Extensions
             var max = Math.Max(A, B);
 
             return min <= X && X <= max;
+        }
+
+        public static int Multiply(this IEnumerable<int> enumerable)
+        {
+            return enumerable.Aggregate(1, (current, item) => current * item);
+        }
+        public static long Multiply(this IEnumerable<long> enumerable)
+        {
+            return enumerable.Aggregate((long)1, (current, item) => current * item);
         }
     }
 }
