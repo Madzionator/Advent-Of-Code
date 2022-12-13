@@ -45,6 +45,16 @@ namespace Advent.Helpers.Extensions
             }
         }
 
+        public static void DrawMatrix<T, Y>(this T[,] matrix, Func<T,Y> map, string separator = "")
+        {
+            for (var y = 0; y < matrix.GetLength(0); y++)
+            {
+                for (var x = 0; x < matrix.GetLength(1); x++)
+                    Console.Write(map(matrix[y, x]).ToString() + separator);
+                Console.WriteLine();
+            }
+        }
+
         public static T[,] CopyMatrix<T>(this T[,] matrix) => matrix.Clone() as T[,];
 
         public static int[,] ToMatrix(this string[] array)
