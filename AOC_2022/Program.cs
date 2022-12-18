@@ -3,9 +3,10 @@ using Advent._2022.Day;
 using System.Diagnostics;
 using System.Reflection;
 
-var day = $"Day{DateTime.Now.AddHours(-6).Day}";
+var day = DateTime.Now.AddHours(-6).Day;
+//day=1
 
-var type = Assembly.GetExecutingAssembly().DefinedTypes.First(x => x.Name.Equals(day));
+var type = Assembly.GetExecutingAssembly().DefinedTypes.First(x => x.Name.Equals($"Day{day}"));
 var dayInstance = (IDay)Activator.CreateInstance(type);
 
 var s = new Stopwatch();

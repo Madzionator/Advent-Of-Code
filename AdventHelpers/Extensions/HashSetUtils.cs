@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Advent.Helpers.Extensions
 {
@@ -19,6 +20,22 @@ namespace Advent.Helpers.Extensions
                     Console.Write(map.Contains((x, y)) ? '#' : ' ');
                 Console.Write('\n');
             }
+        }
+
+        public static void DrawMap(this HashSet<(int, int)> map, int fromX, int toX, int fromY, int toY)
+        {
+            var sb = new StringBuilder();
+            for (var y = fromY; y <= toY; y++)
+            {
+                for (var x = fromX; x <= toX; x++)
+                {
+                    sb.Append(map.Contains((x, y)) ? "#" : " ");
+                }
+
+                sb.AppendLine();
+            }
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine(sb);
         }
     }
 }
