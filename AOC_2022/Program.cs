@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 var day = DateTime.Now.AddHours(-6).Day;
-//day=1;
+day = 16;
 
 var type = Assembly.GetExecutingAssembly().DefinedTypes.First(x => x.Name.Equals($"Day{day}"));
 var dayInstance = (IDay)Activator.CreateInstance(type);
