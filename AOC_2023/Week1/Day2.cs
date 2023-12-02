@@ -12,19 +12,12 @@ class Day2 : IDay
         Console.WriteLine($"B: {TaskB(games)}");
     }
 
-    record RgbSet()
+    record RgbSet(int R, int G,int B)
     {
-        public int R { get; set; }
-        public int G { get; set; }
-        public int B { get; set; }
-
         public bool IsValid() => R <= 12 && G <= 13 && B <= 14;
     }
 
-    record Game(int Id)
-    {
-        public List<RgbSet> Sets { get; set; } = new();
-    }
+    record Game(int Id, List<RgbSet> Sets);
 
     int TaskA(List<Game> games) => games
         .Where(game => game.Sets
@@ -44,30 +37,30 @@ class Day2 : IDay
         input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
             .Select((line, i) =>
             {
-                var game = new Game(i + 1);
+                var game = new Game(i + 1, new List<RgbSet>());
 
                 foreach (var sets in line.Split(": ")[1].Split("; "))
                 {
                     var colors = sets.Replace(", ", " ").Split(" ");
-                    var rgb = new RgbSet();
+                    int red = 0, green = 0, blue = 0;
 
                     for (var j = 1; j < colors.Length; j += 2)
                     {
-                        switch (colors[j])
+                        switch (colors[j][0])
                         {
-                            case "red":
-                                rgb.R = Int32.Parse(colors[j - 1]);
+                            case 'r':
+                                red = int.Parse(colors[j - 1]);
                                 break;
-                            case "green":
-                                rgb.G = Int32.Parse(colors[j - 1]);
+                            case 'g':
+                                green = int.Parse(colors[j - 1]);
                                 break;
-                            case "blue":
-                                rgb.B = Int32.Parse(colors[j - 1]);
+                            case 'b':
+                                blue = int.Parse(colors[j - 1]);
                                 break;
                         }
                     }
 
-                    game.Sets.Add(rgb);
+                    game.Sets.Add(new RgbSet(red, green, blue));
                 }
 
                 return game;
