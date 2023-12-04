@@ -23,19 +23,10 @@ class Day3 : IDay
 
         foreach (var symbol in _symbols)
         {
-            int x = symbol.Key.X;
-            int y = symbol.Key.Y;
-
-            CheckAndAddUnique(x - 1, y - 1);
-            CheckAndAddUnique(x, y - 1);
-            CheckAndAddUnique(x + 1, y - 1);
-
-            CheckAndAddUnique(x - 1, y);
-            CheckAndAddUnique(x + 1, y);
-
-            CheckAndAddUnique(x - 1, y + 1);
-            CheckAndAddUnique(x, y + 1);
-            CheckAndAddUnique(x + 1, y + 1);
+            for(var dx = -1; dx <= 1; dx ++)
+            for (var dy = -1; dy <= 1; dy++) 
+                if(!(dx == 0 && dy == 0)) 
+                    CheckAndAddUnique(symbol.Key.X + dx, symbol.Key.Y + dy);
         }
 
         return partNumbers.Sum(x => x.Value);
@@ -60,16 +51,10 @@ class Day3 : IDay
         var gearRatio = 1;
         var alreadyIncluded = new List<Number>();
 
-        CalculatePartRatio(x - 1, y - 1);
-        CalculatePartRatio(x, y - 1);
-        CalculatePartRatio(x + 1, y - 1);
-
-        CalculatePartRatio(x - 1, y);
-        CalculatePartRatio(x + 1, y);
-
-        CalculatePartRatio(x - 1, y + 1);
-        CalculatePartRatio(x, y + 1);
-        CalculatePartRatio(x + 1, y + 1);
+        for (var dx = -1; dx <= 1; dx++)
+        for (var dy = -1; dy <= 1; dy++)
+            if (!(dx == 0 && dy == 0))
+                CalculatePartRatio(x + dx, y + dy);
 
         return nextToGearQuantity == 2 ? gearRatio : 0;
 
@@ -92,11 +77,11 @@ class Day3 : IDay
     {
         int idx = -1, lastIdx = -1;
 
-        _ = File.ReadAllText(@"Week1\input3.txt")
-            .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+        _ = File.ReadAllLines(@"Week1\input3.txt")
             .Select((str, y) =>
             {
-                int xb = -2, xe = -2, val = 0;
+                int xStart = -2;
+                int val = 0;
 
                 for (var j = 0; j < str.Length; j++)
                 {
@@ -106,15 +91,15 @@ class Day3 : IDay
 
                         if (lastIdx == idx)
                         {
-                            xb = j;
+                            xStart = j;
                             idx++;
                         }
 
                         if (j + 1 == str.Length || !char.IsDigit(str[j + 1]))
                         {
-                            xe = j;
-                            for (var x = xb; x <= xe; x++)
+                            for (var x = xStart; x <= j; x++)
                                 _numbers.Add((x, y), new Number(idx, val));
+
                             val = 0;
                             lastIdx++;
                         }
