@@ -1,4 +1,5 @@
 ﻿global using Advent.Helpers.Extensions;
+global using Advent.Helpers.Methods;
 using Advent._2023.Day;
 using System.Diagnostics;
 using System.Reflection;
