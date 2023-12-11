@@ -49,7 +49,7 @@ class Day16 : IDay
         var valvesToOpen = _valves.Where(x => x.Value.Pressure > 0).Select(x => x.Key).ToList();
 
         var max = 0;
-        var combinations = valvesToOpen.Combinations(valvesToOpen.Count/2).Select(x => x.ToList());
+        var combinations = valvesToOpen.Permutations(valvesToOpen.Count/2).Select(x => x.ToList());
 
         foreach (var combination in combinations)
         {
