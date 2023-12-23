@@ -7,6 +7,14 @@ namespace Advent.Helpers.Extensions
 {
     public static class HashSetUtils
     {
+        public static void AddRange<T>(this HashSet<T> hashSet, HashSet<T> toAdd)
+        {
+            foreach (var element in toAdd)
+            {
+                hashSet.Add(element);
+            }
+        }
+
         public static void DrawMap(this HashSet<(int, int)> map)
         {
             var maxX = map.Select(w => w.Item1).Max();
