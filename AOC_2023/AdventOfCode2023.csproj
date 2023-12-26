@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+    
   <ItemGroup>
     <ProjectReference Include="..\AdventHelpers\AdventHelpers.csproj" />
   </ItemGroup>
@@ -16,5 +16,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Z3" Version="4.12.2" />
+	</ItemGroup>
     
 </Project>
