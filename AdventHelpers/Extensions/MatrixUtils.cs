@@ -64,6 +64,7 @@ namespace Advent.Helpers.Extensions
                     Console.Write(matrix[y, x].ToString() + separator);
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         public static void DrawMatrix<T, Y>(this T[,] matrix, Func<T,Y> map, string separator = "")
