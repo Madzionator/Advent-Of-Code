@@ -16,16 +16,16 @@ class Day21 : IDay
 
         Console.WriteLine($"A: {TaskA(64)}");
 
-        //Part B ~ 2s + works on input where: stepsToDo = k * mapWidth + mapWidth/2, so correct for real input (131 x 131), incorrect for example (11 x 11); 
+        //Part B : works on input where: stepsToDo = k * mapWidth + mapWidth/2, so correct for real input (131 x 131), incorrect for example (11 x 11) (with 2650136 steps); 
         Console.WriteLine($"B: {TaskB(26_501_365)}");
     }
 
-    int TaskA(int step) => CountGardenPlots(new[] { step })[0].Y;
+    int TaskA(int stepsToDo) => CountGardenPlots(new[] { stepsToDo })[0].Y;
 
     long TaskB(long stepsToDo)
     {
-        var keyPoint = (int x) => x * _max + _max / 2; // x * 131 + 65
-        var points = CountGardenPlots(new[] { keyPoint(0), keyPoint(1), keyPoint(2) }); // 65, 196, 327
+        var keyPointCalculator = (int x) => x * _max + _max / 2; // x * 131 + 65
+        var points = CountGardenPlots(new[] { keyPointCalculator(0), keyPointCalculator(1), keyPointCalculator(2) }); //calculate for 65, 196 and 327 steps
 
         return LagrangeInterpolation(points, stepsToDo);
     }
@@ -34,39 +34,62 @@ class Day21 : IDay
     {
         var start = _map.First(x => x == 'S');
         var res = new Point[stepsToDo.Length];
-        int p = 0;
+        var p = 0;
 
-        var mapToModify = new HashSet<(int Y, int X)>();
-        var mapToCompare = new HashSet<(int Y, int X)>{ start };
+        var allVisitedEven = new HashSet<(int Y, int X)>{ start };
+        var allVisitedOdd = new HashSet<(int Y, int X)>();
+
+        var lastEven = new HashSet<(int Y, int X)>{ start };
+        var lastOdd = new HashSet<(int Y, int X)>();
+        var temp = new HashSet<(int Y, int X)>();
 
         for (var step = 1; step <= stepsToDo.Last(); step++)
         {
-            foreach ((int y, int x) in mapToCompare)
+            if(step % 2 != 0) // step 1, 3, 5 etc
             {
-                mapToModify.Remove((y, x));
+                foreach (var (y, x) in lastEven)
+                {
+                    TryAddNeighbours(y, x, allVisitedOdd);
+                }
 
-                if (IsNotRock(y - 1, x))
-                    mapToModify.Add((y - 1, x));
+                lastOdd = temp;
+            }
+            else //step 2, 4, 6 etc.
+            {
+                foreach (var (y, x) in lastOdd)
+                {
+                    TryAddNeighbours(y, x, allVisitedEven);
+                }
 
-                if (IsNotRock(y + 1, x))
-                    mapToModify.Add((y + 1, x));
-
-                if (IsNotRock(y, x - 1))
-                    mapToModify.Add((y, x - 1));
-
-                if (IsNotRock(y, x + 1))
-                    mapToModify.Add((y, x + 1));
+                lastEven = temp;
             }
 
-            mapToCompare = new HashSet<(int Y, int X)>(mapToModify);
+            temp = new HashSet<(int Y, int X)>();
             if (stepsToDo.Contains(step))
             {
-                res[p] = new Point(step, mapToCompare.Count);
+                res[p] = new Point(step, step % 2 == 0 ? allVisitedEven.Count : allVisitedOdd.Count);
                 p++;
             }
         }
 
         return res;
+
+        void TryAddNeighbours(int y, int x, HashSet<(int, int)> tryAddTo)
+        {
+            TryAddPosition(y - 1, x, tryAddTo);
+            TryAddPosition(y + 1, x, tryAddTo);
+            TryAddPosition(y, x - 1, tryAddTo);
+            TryAddPosition(y, x + 1, tryAddTo);
+        }
+
+        void TryAddPosition(int y, int x, HashSet<(int, int)> tryAddTo)
+        {
+            if (!IsNotRock(y, x) || lastOdd.Contains((y, x)) || lastEven.Contains((y, x))) 
+                return;
+
+            tryAddTo.Add((y, x));
+            temp.Add((y, x));
+        }
     }
 
     bool IsNotRock(int y, int x)
