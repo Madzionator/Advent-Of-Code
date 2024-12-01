@@ -1,20 +1,18 @@
 ﻿namespace AdventOfCode2024.Week1;
 
-class Day1 : IDay
+class Day1 : Day
 {
-    public void Execute()
+    public override (object, object) Execute()
     {
-        var input = File.ReadAllText(@"Week1\input1.txt")
-            .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+        var input = InputLines
             .Select(line => line.Split("  ").Select(int.Parse).ToArray())
             .Select(x => (L: x[0], R: x[1]))
             .ToList();
 
-        Console.WriteLine($"A: {TaskA(input)}");
-        Console.WriteLine($"B: {TaskB(input)}");
+        return (TaskA(input), TaskB(input));
     }
 
-    long TaskA(List<(int L, int R)> input)
+    int TaskA(List<(int L, int R)> input)
     {
         return input.Select(x => x.L).Order()
             .Zip(input.Select(x => x.R).Order(), 
