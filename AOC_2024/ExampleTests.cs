@@ -8,6 +8,8 @@ public class ExampleTests
 {
     [Fact]
     public void Day1() => ExecuteDay<Day1>("Week1/example1_1.txt", "11", "31");
+    [Fact]
+    public void Day2() => ExecuteDay<Day2>("Week1/example2_1.txt", "2", "4");
 
     private static void ExecuteDay<TDay>(string path, string expectedResultA, string expectedResultB) where TDay : Day
     {

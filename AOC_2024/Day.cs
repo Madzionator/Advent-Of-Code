@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Humanizer;
 
 namespace AdventOfCode2024;
 
@@ -22,7 +23,7 @@ public abstract class Day
         Console.WriteLine($"A: {results.resultA}");
         Console.WriteLine($"B: {results.resultB}");
 
-        Console.WriteLine($"\n\nTime Elapsed: {s.ElapsedMilliseconds}ms");
+        Console.WriteLine($"\n\nTime Elapsed: {s.Elapsed.Humanize()}");
     }
 
     public abstract (object resultA, object resultB) Execute();
