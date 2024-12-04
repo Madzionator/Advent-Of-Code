@@ -7,7 +7,7 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e1fc5940_002D7f3d_002D418c_002D86f9_002D0a478d6634cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Day1Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::BE59450A-A583-4CE9-BF5A-D27AD76E01BD::net9.0::AdventOfCode2024.ExampleTests.Day2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BE59450A-A583-4CE9-BF5A-D27AD76E01BD::net9.0::AdventOfCode2024.ExampleTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark9/@KeyIndexDefined">True</s:Boolean>
