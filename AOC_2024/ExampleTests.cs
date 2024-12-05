@@ -20,6 +20,9 @@ public class ExampleTests
     [Fact]
     public void Day4() => ExecuteDay<Day4>("Week1/example4_1.txt", "18", "9");
 
+    [Fact]
+    public void Day5() => ExecuteDay<Day5>("Week1/example5_1.txt", "143", "123");
+
     private static void ExecuteDay<TDay>(string path, string expectedResultA, string expectedResultB) where TDay : Day
     {
         var dayInstance = (Day)Activator.CreateInstance(typeof(TDay))!;
