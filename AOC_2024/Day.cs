@@ -23,7 +23,7 @@ public abstract class Day
         Console.WriteLine($"A: {results.resultA}");
         Console.WriteLine($"B: {results.resultB}");
 
-        Console.WriteLine($"\n\nTime Elapsed: {s.Elapsed.Humanize()}");
+        Console.WriteLine($"\n\nTime Elapsed: {s.Elapsed.Humanize(precision: 2)}");
     }
 
     public abstract (object resultA, object resultB) Execute();
