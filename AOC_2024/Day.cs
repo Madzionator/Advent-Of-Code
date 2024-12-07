@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿global using Advent.Helpers.Extensions;
+global using Advent.Helpers.Methods;
+
+using System.Diagnostics;
 using Humanizer;
 
 namespace AdventOfCode2024;

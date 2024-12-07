@@ -1,6 +1,4 @@
-﻿global using Advent.Helpers.Extensions;
-global using Advent.Helpers.Methods;
-using System.Reflection;
+﻿using System.Reflection;
 using AdventOfCode2024;
 
 var day = DateTime.Now.AddHours(-6).Day;
