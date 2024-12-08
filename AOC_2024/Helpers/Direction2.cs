@@ -18,6 +18,25 @@ public readonly record struct Direction2
         _directionIndex = index;
     }
 
+    public Direction2(int dy, int dx)
+    {
+        var sdy = Math.Sign(dy);
+        var sdx = Math.Sign(dy);
+
+        _directionIndex = (sdy, sdx) switch
+        {
+            (-1, 0) => 0,
+            (-1, 1) => 1,
+            (0, 1) => 2,
+            (1, 1) => 3,
+            (1, 0) => 4,
+            (1, -1) => 5,
+            (0, -1) => 6,
+            (-1, -1) => 7,
+            _ => throw new ArgumentException()
+        };
+    }
+
     public Vector2 Vector2 => DirectionValues[_directionIndex];
 
     public Direction2 Rotate(Rotation rotation)
@@ -28,6 +47,7 @@ public readonly record struct Direction2
             Rotation.Left45 => new Direction2((_directionIndex + 7) % 8),
             Rotation.Right90 => new Direction2((_directionIndex + 2) % 8),
             Rotation.Left90 => new Direction2((_directionIndex + 6) % 8),
+            Rotation.Right180 => new Direction2((_directionIndex + 4) % 8),
             _ => throw new ArgumentOutOfRangeException(nameof(Rotation))
         };
     }
@@ -55,5 +75,6 @@ public enum Rotation
     Right45,
     Left45,
     Right90,
-    Left90
+    Left90,
+    Right180,
 }
