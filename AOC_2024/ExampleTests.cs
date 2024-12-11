@@ -47,6 +47,9 @@ public class ExampleTests
     [Fact]
     public void Day10() => ExecuteDay<Day10>("Week2/example10_1.txt", "36", "81");
 
+    [Fact]
+    public void Day11() => ExecuteDay<Day11>("Week2/example11_1.txt", "55312", "65601038650482");
+
     #endregion
 
     private static void ExecuteDay<TDay>(string path, string expectedResultA, string expectedResultB) where TDay : Day

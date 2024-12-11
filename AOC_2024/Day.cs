@@ -51,13 +51,13 @@ public abstract class Day
     {
         // warm up
         var results = Execute();
-        for (int i = 0; i < 4; i++) 
+        for (int i = 0; i < 19; i++) 
         {
             Execute();
         }
 
         // measurement
-        var repeats = 10;
+        var repeats = 20;
         var s = Stopwatch.StartNew();
         for (int i = 0; i < repeats; i++)
         {
