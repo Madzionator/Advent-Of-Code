@@ -56,6 +56,9 @@ public class ExampleTests
     [InlineData(3, "1930", "1206")]
     public void Day12(int ex, string a, string b) => ExecuteDay<Day12>($"Week2/example12_{ex}.txt", a, b);
 
+    [Fact]
+    public void Day13() => ExecuteDay<Day13>("Week2/example13_1.txt", "480", "");
+
     #endregion
 
     private static void ExecuteDay<TDay>(string path, string expectedResultA, string expectedResultB) where TDay : Day
