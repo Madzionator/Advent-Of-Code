@@ -1,5 +1,6 @@
 ﻿using AdventOfCode2024.Week1;
 using AdventOfCode2024.Week2;
+using AdventOfCode2024.Week3;
 using FluentAssertions;
 using Xunit;
 
@@ -61,6 +62,15 @@ public class ExampleTests
 
     [Fact]
     public void Day14() => ExecuteDay<Day14>("Week2/example14_1.txt", "12", "");
+
+    #endregion
+
+    #region Week3
+
+    [Theory]
+    [InlineData(1, "2028", "1751")]
+    [InlineData(2, "10092", "9021")]
+    public void Day15(int ex, string a, string b) => ExecuteDay<Day15>($"Week3/example15_{ex}.txt", a, b);
 
     #endregion
 
