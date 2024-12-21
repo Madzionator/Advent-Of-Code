@@ -89,6 +89,9 @@ public class ExampleTests
     [Fact]
     public void Day19() => ExecuteDay<Day19>("Week3/example19_1.txt", "6", "16");
 
+    [Fact]
+    public void Day20() => ExecuteDay<Day20>("Week3/example20_1.txt", "", ""); // Various numbers to verify during debugging
+
     #endregion
 
     private static void ExecuteDay<TDay>(string path, string expectedResultA, string expectedResultB) where TDay : Day
