@@ -4,6 +4,8 @@ using Xunit;
 using Xunit.Sdk;
 using Xunit.v3;
 
+[assembly: CaptureConsole]
+
 namespace AdventOfCode2025;
 
 /// <summary>
@@ -39,7 +41,7 @@ public abstract class Day
         var (actualPart1, actualPart2) = instance.Execute(lines);
         sw.Stop();
 
-        Console.WriteLine($"{GetType().Name} | {fullPath} | PartA={actualPart1} | PartB={actualPart2} | Elapsed={sw.ElapsedMilliseconds}ms");
+        Console.WriteLine($"{GetType().Name} | {fullPath} | PartA={actualPart1} | PartB={actualPart2} | Elapsed={sw.Elapsed.TotalSeconds:F3}s");
 
         if (expectedPart1 is not null)
             Assert.Equal(expectedPart1, actualPart1);

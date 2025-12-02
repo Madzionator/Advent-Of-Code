@@ -16,7 +16,7 @@ public class Day1 : Day
         return (TaskA(input), TaskB(input));
     }
 
-    int TaskA(List<int> input)
+    private int TaskA(List<int> input)
     {
         var atZero = 0;
         var currentPosition = 50;
@@ -33,7 +33,7 @@ public class Day1 : Day
         return atZero;
     }
 
-    int TaskB(List<int> input)
+    private int TaskB(List<int> input)
     {
         var atZero = 0;
         var currentPosition = 50;
