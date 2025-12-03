@@ -11,6 +11,7 @@
     &lt;TestId&gt;xUnit::BB540417-6C50-422C-9131-9FD597E15920::net10.0::AdventOfCode2025.ExampleTests.Day01&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BB540417-6C50-422C-9131-9FD597E15920::net10.0::AdventOfCode2025.Days.Day1&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BB540417-6C50-422C-9131-9FD597E15920::net10.0::AdventOfCode2025.Days.Day2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::BB540417-6C50-422C-9131-9FD597E15920::net10.0::AdventOfCode2025.Days.Day3&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark9/@KeyIndexDefined">True</s:Boolean>
