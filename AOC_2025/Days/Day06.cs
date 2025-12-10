@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode2025.Days;
 
-[AocData("example6_1.txt", 4277556L, 3263827L)]
-[AocData("input6.txt", 5784380717354L, 7996218225744L)]
-public class Day6 : Day
+[AocData("example06_1.txt", 4277556L, 3263827L)]
+[AocData("input06.txt", 5784380717354L, 7996218225744L)]
+public class Day06 : Day
 {
     private record CephalopodProblem(List<int> NumbersA, List<int> NumbersB, char Operation);
 

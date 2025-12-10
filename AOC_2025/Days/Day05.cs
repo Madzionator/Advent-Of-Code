@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode2025.Days;
 
-[AocData("example5_1.txt", 3, 14L)]
-[AocData("input5.txt", 601, 367899984917516L)]
-public class Day5 : Day
+[AocData("example05_1.txt", 3, 14L)]
+[AocData("input05.txt", 601, 367899984917516L)]
+public class Day05 : Day
 {
     public override (object? PartA, object? PartB) Execute(string[] inputLines)
     {

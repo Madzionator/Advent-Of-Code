@@ -2,9 +2,9 @@
 
 namespace AdventOfCode2025.Days;
 
-[AocData("example8_1.txt", 40, 25272L)]
-[AocData("input8.txt", 122636, 9271575747L)]
-public class Day8 : Day
+[AocData("example08_1.txt", 40, 25272L)]
+[AocData("input08.txt", 122636, 9271575747L)]
+public class Day08 : Day
 {
     private record struct Point(int X, int Y, int Z);
     private record struct Connection(Point A, Point B, long SquaredLength);

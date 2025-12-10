@@ -1,8 +1,8 @@
 ﻿namespace AdventOfCode2025.Days;
 
-[AocData("example2_1.txt", 1227775554L, 4174379265L)]
-[AocData("input2.txt", 54641809925, 73694270688)]
-public class Day2 : Day
+[AocData("example02_1.txt", 1227775554L, 4174379265L)]
+[AocData("input02.txt", 54641809925, 73694270688)]
+public class Day02 : Day
 {
     private static readonly Dictionary<int, int[]> ValidPatternLengthsByNumberLength = new()
     {
