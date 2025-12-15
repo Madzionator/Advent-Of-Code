@@ -1,9 +1,24 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0ffbeda9_002D5ce7_002D4e6d_002D9af6_002D171074562108/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Day11 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=71d6d91e_002D8ea2_002D4dfa_002Da006_002D88fcab0515a4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ab53e4da_002Dc874_002D47c1_002Daa84_002D86da7265bb1d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d18f37d3_002D25be_002D4d7b_002Dac5c_002D3008c0e9d08c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Day11 #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd0d4f1b_002D71e6_002D4381_002D9650_002D9e234c43501f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Day11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e1fc5940_002D7f3d_002D418c_002D86f9_002D0a478d6634cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Day1Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
@@ -19,6 +34,7 @@
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day8&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day09&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day10&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark9/@KeyIndexDefined">True</s:Boolean>
