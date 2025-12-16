@@ -15,12 +15,13 @@
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd0d4f1b_002D71e6_002D4381_002D9650_002D9e234c43501f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Day11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dd0d4f1b_002D71e6_002D4381_002D9650_002D9e234c43501f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Day11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day12&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e1fc5940_002D7f3d_002D418c_002D86f9_002D0a478d6634cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Day1Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e1fc5940_002D7f3d_002D418c_002D86f9_002D0a478d6634cd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Day1Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::BE59450A-A583-4CE9-BF5A-D27AD76E01BD::net9.0::AdventOfCode2024.ExampleTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::BB540417-6C50-422C-9131-9FD597E15920::net10.0::AdventOfCode2025.ExampleTests.Day01&lt;/TestId&gt;&#xD;
@@ -35,6 +36,7 @@
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day09&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day10&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day11&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::127AC6A2-A9AE-96B6-EC31-73AF908ABA5A::net10.0::AdventOfCode2025.Days.Day12&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/Housekeeping/Bookmarks/NumberedBookmarks/=Bookmark9/@KeyIndexDefined">True</s:Boolean>
